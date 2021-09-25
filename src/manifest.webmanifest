@@ -1,8 +1,8 @@
 {
-  "name": "to-do-list-angular-pwa",
-  "short_name": "to-do-list-angular-pwa",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "name": "To Do List",
+  "short_name": "To Do List",
+  "theme_color": "#6f42c1",
+  "background_color": "#f8f9fa",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
