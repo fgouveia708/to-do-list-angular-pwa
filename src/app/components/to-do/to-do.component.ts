@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { TodoResponse } from 'src/app/services/todo/model/todo-response';
+import { TodoService } from 'src/app/services/todo/todo.service';
 
 @Component({
   selector: 'app-to-do',
@@ -9,13 +12,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ToDoComponent implements OnInit {
 
   fGroup: FormGroup;
+  dataSource: Observable<TodoResponse[]>;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private todoService: TodoService
   ) { }
 
 
   ngOnInit() {
+    this.fetchData();
     this.fGroup = this.formBuilder.group({
       task: ['', [Validators.required]]
     });
@@ -25,7 +31,10 @@ export class ToDoComponent implements OnInit {
     this.fGroup.markAllAsTouched();
 
     if (this.validSubmit()) {
-      console.log(this.fGroup.value);
+      this.todoService.insert({ description: this.fGroup.value.task }).subscribe(result => {
+        console.log(result);
+        this.fetchData();
+      });
       this.fGroup.reset();
     }
   }
@@ -39,8 +48,12 @@ export class ToDoComponent implements OnInit {
   }
 
   changeStatus(e: any) {
-    if (e.target.checked) {
-      console.log(e.target.value);
-    }
+    this.todoService.update(e.target.value).subscribe(result => {
+      this.fetchData();
+    });
+  }
+
+  fetchData() {
+    this.dataSource = this.todoService.getAll();
   }
 }

@@ -8,24 +8,17 @@
 
 <div class="my-3 p-3 bg-body rounded shadow-sm">
     <div class="list-group">
-        <label class="list-group-item d-flex gap-3">
-            <input class="form-check-input flex-shrink-0" type="checkbox" value="01" (change)="changeStatus($event)" checked="">
-            <span [ngClass]="{'task-done': true}" class="pt-1 form-checked-content text-muted">
-                Finish sales report
-            </span>
-        </label>
-        <label class="list-group-item d-flex gap-3">
-            <input class="form-check-input flex-shrink-0" type="checkbox">
-            <span class="pt-1 form-checked-content">
-                Weekly All Hands
-            </span>
-        </label>
-        <label class="list-group-item d-flex gap-3">
-            <input class="form-check-input flex-shrink-0" type="checkbox">
-            <span class="pt-1 form-checked-content">
-                Out of office
-            </span>
-        </label>
+        <ng-container *ngIf="dataSource | async as items">
+            <ng-container *ngIf="items.length > 0">
+                <label class="list-group-item d-flex gap-3" *ngFor="let item of items">
+                    <input class="form-check-input flex-shrink-0" type="checkbox" value="{{item.id}}"
+                        (change)="changeStatus($event)" [checked]="item.done">
+                    <span [ngClass]="{'task-done': item.done}" class="pt-1 form-checked-content text-muted">
+                        {{item.description}}
+                    </span>
+                </label>
+            </ng-container>
+        </ng-container>
         <form [formGroup]="fGroup" (ngSubmit)="add()">
             <label class="list-group-item d-flex gap-3 bg-light">
                 <input class="form-check-input form-check-input-placeholder bg-light flex-shrink-0" disabled=""

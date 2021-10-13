@@ -1,1 +1,3 @@
-export interface TodoRequest { }
+export interface TodoRequest {
+    description: string;
+}
