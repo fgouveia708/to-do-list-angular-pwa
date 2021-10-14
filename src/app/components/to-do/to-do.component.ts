@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { TodoResponse } from 'src/app/services/todo/model/todo-response';
+import { Todo } from 'src/app/services/todo/model/todo';
 import { TodoService } from 'src/app/services/todo/todo.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-to-do',
@@ -12,13 +13,14 @@ import { TodoService } from 'src/app/services/todo/todo.service';
 export class ToDoComponent implements OnInit {
 
   fGroup: FormGroup;
-  dataSource: Observable<TodoResponse[]>;
+  dataSource: Observable<Todo[]>;
 
   constructor(
     private formBuilder: FormBuilder,
-    private todoService: TodoService
-  ) { }
-
+    private todoService: TodoService,
+  ) {
+    this.refreshList();
+  }
 
   ngOnInit() {
     this.fetchData();
@@ -31,9 +33,13 @@ export class ToDoComponent implements OnInit {
     this.fGroup.markAllAsTouched();
 
     if (this.validSubmit()) {
-      this.todoService.insert({ description: this.fGroup.value.task }).subscribe(result => {
-        console.log(result);
-        this.fetchData();
+      const date = new Date()
+      this.todoService.insert({
+        id: uuidv4(),
+        created_at: date,
+        updated_at: date,
+        done: false,
+        description: this.fGroup.value.task
       });
       this.fGroup.reset();
     }
@@ -53,7 +59,15 @@ export class ToDoComponent implements OnInit {
     });
   }
 
-  fetchData() {
-    this.dataSource = this.todoService.getAll();
+  async fetchData() {
+    this.dataSource = await this.todoService.getAll();
+  }
+
+  refreshList() {
+    this.todoService.todoInsertedInApi.subscribe(result => {
+      if (result) {
+        this.fetchData();
+      }
+    })
   }
 }

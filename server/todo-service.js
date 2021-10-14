@@ -3,13 +3,12 @@ const { v4: uuidv4 } = require('uuid');
 
 
 module.exports.insert = (req, res) => {
-    const date = new Date()
+    const date = new Date();
     const body = req.body;
-
-    body.id = uuidv4();
-    body.done = false;
-    body.updated_at = date;
-    body.created_at = date;
+    console.log("fff", body);
+    body.id = body.id ? body.id : uuidv4();
+    body.updated_at = body.updated_at ? body.updated_at : date;
+    body.created_at = body.created_at ? body.created_at : date;
 
     TODO.push(body);
     console.log("Add task.", body);

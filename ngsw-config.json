@@ -31,7 +31,7 @@
     {
       "name": "to-do-list-api",
       "urls": [
-        ""
+        "localhost:9000"
       ],
       "cacheConfig": {
         "strategy": "freshness",
