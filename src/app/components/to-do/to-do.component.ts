@@ -42,6 +42,7 @@ export class ToDoComponent implements OnInit {
         description: this.fGroup.value.task
       });
       this.fGroup.reset();
+      this.fetchData();
     }
   }
 

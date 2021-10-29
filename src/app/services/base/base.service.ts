@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injector } from '@angular/core';
 import Dexie from 'dexie';
-import { Observable, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { NetworkService } from '../network/network.service';
 
 export abstract class BaseService<T extends { id: string, created_at: Date, updated_at: Date }> {
@@ -75,20 +75,15 @@ export abstract class BaseService<T extends { id: string, created_at: Date, upda
     return this.http.patch(this.urlApi, { id });
   }
 
-  async getAll(): Promise<T[]> {
+  async getAll() {
     const data: T[] = await this.table.toArray();
     this.http.get<T[]>(this.urlApi).subscribe(result => {
       result.forEach(e => {
         data.push(e)
       });
     });
-    return data.sort(c => c.created_at);
+    return of(data);
   }
-
-  // async getAll() {
-  //   const data: T[] = await this.table.toArray();
-  //   return this.http.get<T[]>(this.urlApi);
-  // }
 
   private listenConnectionStatus() {
     this.networkService.connectionStatus.subscribe(online => {
