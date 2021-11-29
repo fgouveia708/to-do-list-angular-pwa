@@ -25,3 +25,17 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+
+<img src="https://raw.githubusercontent.com/fgouveia708/to-do-list-angular-pwa/master/src/assets/img/screenshot-1.jpeg" width="350">
+
+
+| APLICATIVO INSTALADO      | APLICATIVO GOOGLE NO CHROME |
+| --------- | -----:|
+| <img src="https://raw.githubusercontent.com/fgouveia708/to-do-list-angular-pwa/master/src/assets/img/screenshot-1.jpeg" width="350"> |<img src="https://raw.githubusercontent.com/fgouveia708/to-do-list-angular-pwa/master/src/assets/img/screenshot-1.jpeg" width="350">|
+
+
+| APLICATIVO DESKTOP INSTALADO      | APLICATIVO NO GOOGLE CHROME |
+| --------- | -----:|
+| <img src="https://raw.githubusercontent.com/fgouveia708/to-do-list-angular-pwa/master/src/assets/img/screenshot-3.png" width="1000"> |<img src="https://raw.githubusercontent.com/fgouveia708/to-do-list-angular-pwa/master/src/assets/img/screenshot-4.png" width="1000">|
