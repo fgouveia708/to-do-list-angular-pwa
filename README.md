@@ -30,11 +30,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 
-| APLICATIVO ANDROID INSTALADO      |APLICATIVO GOOGLE NO CHROME | 
+|  ANDROID       | GOOGLE CHROME | 
 | :---------: | :-----:|
 | <img src="https://raw.githubusercontent.com/fgouveia708/to-do-list-angular-pwa/master/src/assets/img/screenshot-1.jpeg" width="250"> |<img src="https://raw.githubusercontent.com/fgouveia708/to-do-list-angular-pwa/master/src/assets/img/screenshot-2.jpg" width="250">|
 
 
-| APLICATIVO DESKTOP INSTALADO      | APLICATIVO NO GOOGLE CHROME |
+| DESKTOP     | GOOGLE CHROME |
 | :---------: | :-----:|
 | <img src="https://raw.githubusercontent.com/fgouveia708/to-do-list-angular-pwa/master/src/assets/img/screenshot-3.png" width="1000"> |<img src="https://raw.githubusercontent.com/fgouveia708/to-do-list-angular-pwa/master/src/assets/img/screenshot-4.png" width="1000">|
